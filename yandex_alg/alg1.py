@@ -45,7 +45,6 @@ def max_sides():
         print(max(b, d), a + c)
 
 
-
 def underg():
     int1 = int(input())
     int2 = int(input())
@@ -69,3 +68,81 @@ def underg():
     else:
         print(tmin, tmax)
 
+
+def type_seq():
+    n = int(input())
+    CONSTANT = 0
+    ASCENDING = 0
+    DESCENDING = 0
+
+    while n != -2000000000:
+        new_n = int(input())
+        if new_n == -2000000000:
+            break
+        if new_n == n:
+            CONSTANT += 1
+        elif new_n > n:
+            ASCENDING += 1
+        elif new_n < n:
+            DESCENDING += 1
+        n = new_n
+    if ASCENDING != 0 and DESCENDING != 0:
+        return "RANDOM"
+    elif ASCENDING == 0 and DESCENDING == 0:
+        return 'CONSTANT'
+    elif CONSTANT != 0 and ASCENDING > 0:
+        return 'WEAKLY ASCENDING'
+    elif CONSTANT != 0 and DESCENDING > 0:
+        return 'WEAKLY DESCENDING'
+    elif ASCENDING > 0:
+        return 'ASCENDING'
+    elif DESCENDING > 0:
+        return "DESCENDING"
+
+
+def nearest_number():
+    n = int(input())
+    nums = [int(i) for i in input().split(' ')]
+    number = int(input())
+
+    for i in range(len(nums)):
+        lowest_value_index = i
+        for j in range(i + 1, len(nums)):
+            if nums[j] < nums[lowest_value_index]:
+                lowest_value_index = j
+        nums[i], nums[lowest_value_index] = nums[lowest_value_index], nums[i]
+
+    low = 0
+    high = len(nums) - 1
+    mid = 0
+    while low <= high:
+        mid = (low + high) // 2
+        if nums[mid] == number:
+            break
+        if nums[mid] < number:
+            low = mid + 1
+        elif nums[mid] > number:
+            high = mid - 1
+    return nums[mid]
+
+
+def more_your_neighbors():
+    nums = [int(i) for i in input().split(' ')]
+    count = 0
+    index = 1
+    finish = len(nums) - 1
+    while index < finish:
+        if nums[index + 1] > nums[index]:
+            index += 1
+            continue
+        if nums[index - 1] < nums[index] > nums[index + 1]:
+            count += 1
+            if index + 2 > finish:
+                break
+            index += 2
+        else:
+            index += 1
+    print(count)
+
+
+more_your_neighbors()

@@ -145,4 +145,22 @@ def more_your_neighbors():
     print(count)
 
 
-more_your_neighbors()
+def symmetric_sequence():
+    nums = [int(i) for i in input().split(' ')]
+    mid = len(nums) // 2 + 1
+    point = mid
+
+    if nums[0:mid - 1] == nums[mid + 1:]:
+        return print(0)
+
+    for index in range(mid, len(nums)):
+        if index + 1 >= len(nums):
+            break
+        elif nums[index] < nums[index + 1] or nums[index] > nums[index + 1]:
+            point += 1
+
+    print(len(nums[:point]))
+    print(nums[:point][::-1])
+
+
+symmetric_sequence()

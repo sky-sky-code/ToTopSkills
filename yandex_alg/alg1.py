@@ -163,4 +163,50 @@ def symmetric_sequence():
     print(nums[:point][::-1])
 
 
-symmetric_sequence()
+def greatest_work():
+    nums = [int(i) for i in input().split(' ')]
+
+    arr = []
+
+    count_loop = 0
+
+    while count_loop != 2:
+        max_num = 0
+        index_max_num = 0
+
+        for index in range(0, len(nums)):
+            if len(arr) != 0:
+                if arr[0] * nums[index] > max_num:
+                    max_num = arr[0] * nums[index]
+                    index_max_num = index
+            if abs(nums[index]) > max_num:
+                max_num = abs(nums[index])
+                index_max_num = index
+
+        arr.append(nums.pop(index_max_num))
+        count_loop += 1
+
+    print(arr[0], arr[1])
+
+
+def greatest_work_v2():
+    a = map(int, input().split())
+    a = list(a)
+    a = sorted(a)
+    if a[0] * a[1] > a[len(a) - 1] * a[len(a) - 2]:
+        print(a[0], a[1])
+    else:
+        print(a[-2], a[-1])
+
+
+def greatest_work_with_3_num():
+    nums = [int(i) for i in input().split()]
+    nums = sorted(nums)
+    if nums[0] * nums[1] * nums[-1] > nums[0] * nums[1] * nums[2] or nums[0] * nums[1] * nums[-1] > nums[-1] * nums[-2] * nums[-3]:
+        print(nums[0] * nums[1] * nums[-1])
+    if nums[0] * nums[1] * nums[2] > nums[-1] * nums[-2] * nums[-3]:
+        print(nums[0], nums[1], nums[3])
+    else:
+        print(nums[-1], nums[-2], nums[-3])
+
+

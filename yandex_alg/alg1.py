@@ -202,11 +202,63 @@ def greatest_work_v2():
 def greatest_work_with_3_num():
     nums = [int(i) for i in input().split()]
     nums = sorted(nums)
-    if nums[0] * nums[1] * nums[-1] > nums[0] * nums[1] * nums[2] or nums[0] * nums[1] * nums[-1] > nums[-1] * nums[-2] * nums[-3]:
+    if nums[0] * nums[1] * nums[-1] > nums[0] * nums[1] * nums[2] or nums[0] * nums[1] * nums[-1] > nums[-1] * nums[
+        -2] * nums[-3]:
         print(nums[0] * nums[1] * nums[-1])
     if nums[0] * nums[1] * nums[2] > nums[-1] * nums[-2] * nums[-3]:
         print(nums[0], nums[1], nums[3])
     else:
         print(nums[-1], nums[-2], nums[-3])
+
+
+def sapper():
+    nums = [int(i) for i in input().split(' ')]
+    count_rows = nums[0]
+    count_columns = nums[1]
+    count_bomb = nums[2]
+
+    coordinate_bomb = []
+    maap = []
+
+    for bomb in range(0, count_bomb):
+        coordinate_bomb.append([int(i) for i in input().split(' ') if i.isdigit()])
+
+    for row in range(0, count_rows):
+        maap.append([0 for _ in range(0, count_columns)])
+
+    coordinate_neighbors = []
+
+    for coordinate in coordinate_bomb:
+        row, column = coordinate[0], coordinate[1]
+        if row + 1 <= count_rows or column + 1 <= count_columns:
+            if row + 1 <= count_rows and column + 1 <= count_columns:
+                coordinate_neighbors.append([row + 1, column + 1])
+            if column + 1 <= count_columns:
+                coordinate_neighbors.append([row, column + 1])
+            if row + 1 <= count_rows:
+                coordinate_neighbors.append([row + 1, column])
+            if column - 1 >= 0 and row + 1 <= count_rows:
+                coordinate_neighbors.append([row + 1, column - 1])
+        if row - 1 > 0 or column - 1 > 0:
+            if row - 1 > 0 and column - 1 > 0:
+                coordinate_neighbors.append([row - 1, column - 1])
+            if column - 1 > 0:
+                coordinate_neighbors.append([row, column - 1])
+            if row - 1 > 0:
+                coordinate_neighbors.append([row - 1, column])
+            if row - 1 > 0 and column + 1 <= count_columns:
+                coordinate_neighbors.append([row - 1, column + 1])
+
+    for coordinate in coordinate_neighbors:
+        row, column = coordinate[0], coordinate[1]
+        if coordinate in coordinate_bomb:
+            maap[row - 1][column - 1] = "*"
+            continue
+        maap[row - 1][column - 1] += 1
+
+    for i in maap:
+        print(i)
+
+
 
 

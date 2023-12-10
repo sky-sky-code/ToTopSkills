@@ -258,7 +258,3 @@ def sapper():
 
     for i in maap:
         print(i)
-
-
-
-

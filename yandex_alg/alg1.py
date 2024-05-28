@@ -150,7 +150,7 @@ def symmetric_sequence():
     mid = len(nums) // 2 + 1
     point = mid
 
-    if nums[0:mid - 1] == nums[mid + 1:]:
+    if nums[:mid - 1] == nums[mid + 1:]:
         return print(0)
 
     for index in range(mid, len(nums)):
@@ -202,8 +202,7 @@ def greatest_work_v2():
 def greatest_work_with_3_num():
     nums = [int(i) for i in input().split()]
     nums = sorted(nums)
-    if nums[0] * nums[1] * nums[-1] > nums[0] * nums[1] * nums[2] or nums[0] * nums[1] * nums[-1] > nums[-1] * nums[
-        -2] * nums[-3]:
+    if nums[0] * nums[1] * nums[-1] > nums[0] * nums[1] * nums[2] or nums[0] * nums[1] * nums[-1] > nums[-1] * nums[-2] * nums[-3]:
         print(nums[0] * nums[1] * nums[-1])
     if nums[0] * nums[1] * nums[2] > nums[-1] * nums[-2] * nums[-3]:
         print(nums[0], nums[1], nums[3])
@@ -258,3 +257,5 @@ def sapper():
 
     for i in maap:
         print(i)
+
+

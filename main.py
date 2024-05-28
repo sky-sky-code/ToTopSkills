@@ -147,7 +147,6 @@ class BingoCage:
 
 
 def teg(name, *content, class_=None, **attrs):
-
     if class_ is not None:
         attrs['class'] = class_
     attr_pairs = (f'{attr}="{value}"' for attr, value in sorted(attrs.items()))
@@ -159,3 +158,27 @@ def teg(name, *content, class_=None, **attrs):
     else:
         return f'<{name}{attr_str} />'
 
+
+class Phone:
+    username = "Kate"  # public variable
+    __how_many_times_turned_on = 0  # private variable
+
+    def call(self):  # public method
+        print("Ring-ring!")
+
+    def __turn_on(self):  # private method
+        self.__how_many_times_turned_on += 1
+        print("Times was turned on: ", self.__how_many_times_turned_on)
+
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+for num in nums:
+    print(num)
+
+s = 'apple'
+
+if 'apple' == s:
+    print('Это Яблоко :)')
+else:
+    print('Не яблоко :(')

@@ -96,4 +96,29 @@ def brackets_check(seq):
     return True
 
 
+def len_last_word(s):
+    length = 0
+    flag = False
+    for i in range(len(s) - 1, 0, -1):
+        if s[i] != ' ':
+            flag = True
+            length += 1
+        elif flag:
+            break
+    return length
+
+
+def reverse_words(s):
+    s = s.strip()
+    index = len(s) - 1
+
+    result = ''
+    while index >= 0:
+        if s[index] == ' ':
+            result += f'{s[index + 1:]} '
+            s = s[:index].strip()
+            index = len(s) - 1
+        index -= 1
+
+    return result + s
 

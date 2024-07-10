@@ -187,3 +187,21 @@ def valid_sudoku(board):
             squares[(r // 3, c // 3)].add(board[r][c])
         # if we never detect duplicates
     return True
+
+
+def majority_element(nums):
+    """
+    Алгоритм Бойера - Мура
+    """
+
+    candidate = nums[0]
+    count = 1
+    for i in nums:
+        if i == candidate:
+            count += 1
+        else:
+            count -= 1
+            if count == 0:
+                candidate = i
+                count = 1
+    return candidate

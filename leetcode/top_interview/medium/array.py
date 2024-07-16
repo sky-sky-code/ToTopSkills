@@ -1,4 +1,7 @@
 #################################################################
+from collections import defaultdict
+
+
 def mul(arr):
     x_mul = arr[0]
     for i in arr[1:]:
@@ -36,22 +39,42 @@ def product_except_self_v2(arr):
 
 # 3 Sum
 
-def three_sum(arr):
-    current_num = arr.pop(0)
+def three_sum(nums):
+    res = []
+    nums.sort()
 
-    start_check = 0
-    finish_check = 2
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
 
-    result = []
-    while len(arr) >= 2:
-        if current_num + sum(arr[start_check:finish_check]) == 0:
-            result.append([current_num] + arr[start_check:finish_check])
-            del arr[start_check:finish_check]
-            start_check, finish_check = 0, 2
-        else:
-            start_check += finish_check
-            finish_check += 2
-    return result
+        j = i + 1
+        k = len(nums) - 1
+
+        while j < k:
+            total = nums[i] + nums[j] + nums[k]
+
+            if total > 0:
+                k -= 1
+            elif total < 0:
+                j += 1
+            else:
+                res.append([nums[i], nums[j], nums[k]])
+                j += 1
+
+                while nums[j] == nums[j - 1] and j < k:
+                    j += 1
+
+    return res
+
+
+def group_anagrams(strs):
+    anagram_map = defaultdict(list)
+
+    for word in strs:
+        sorted_word = ''.join(sorted(word))
+        anagram_map[sorted_word].append(word)
+
+    return list(anagram_map.values())
 
 
 # Group Anagram

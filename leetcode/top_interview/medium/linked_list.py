@@ -41,8 +41,41 @@ def add_two_numbers(l1, l2):
 
     if carry > 0:
         tmp.next = Node(carry)
-    print_lists(head,'')
+    print_lists(head, '')
 
 
-def odd_even_linked(head):
-    pass
+def odd_even_linked(head: Node):
+    odd = head
+    even = head.next
+    head_even = head.next
+
+    while even is not None and even.next is not None:
+        odd.next = odd.next.next
+        odd = odd.next
+        even.next = even.next.next
+        even = even.next
+
+    odd.next = head_even
+    print_lists(head)
+
+
+def intersection_two_linked_list(headA, headB):
+    stackA = []
+    stackB = []
+
+    while headA or headB:
+        if headA:
+            stackA.append(headA)
+            headA = headA.next
+        if headB:
+            stackB.append(headB)
+            headB = headB.next
+
+    prev = None
+    while stackA and stackB:
+        nodeA = stackA.pop(-1)
+        nodeB = stackB.pop(-1)
+
+        if nodeA != nodeB:
+            return prev
+        prev = nodeA

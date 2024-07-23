@@ -85,6 +85,31 @@ def solution_v4(nums):
     return ','.join(new_arr)
 
 
+"""
+Summary Ranges одно и тоже задание с Merge Intervals
+"""
+
+def summary_ranges(nums):
+    set_nums = set(nums)
+    intervals = []
+
+    for num in nums:
+        if num - 1 not in set_nums:
+            len = 1
+            interval = f"{num}->"
+            while num + len in set_nums:
+                len += 1
+            if num + len -1 == num:
+                interval = f"{num}"
+            else:
+                interval += f"{num + len - 1}"
+            intervals.append(interval)
+    return intervals
+
+
+print(summary_ranges([0, 1, 2, 4, 5, 7]))
+
+
 # Plus One
 
 def plus_one(arr):

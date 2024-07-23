@@ -56,16 +56,6 @@ def two_sum(nums, target):
             left += 1
 
 
-def group_anagrams(strs):
-    anagram_map = defaultdict(list)
-
-    for word in strs:
-        sorted_word = ''.join(sorted(word))
-        anagram_map[sorted_word].append(word)
-
-    return list(anagram_map.values())
-
-
 def jump_game(arr):
     gas = 0
 

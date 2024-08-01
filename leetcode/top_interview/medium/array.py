@@ -210,3 +210,27 @@ def longest_substring_without_repeat(s):
             charMap[s[right]] = right
 
     return maxLength
+
+
+"""
+Учитывая массив intervals где intervals[i] = [starti, endi], объедините все перекрывающиеся интервалы
+и верните массив неперекрывающихся интервалов, которые охватывают все интервалы во входных данных.
+"""
+
+
+def merge_intervals(intervals):
+    intervals = sorted(intervals)
+    result = []
+
+    for interval in intervals:
+        if len(result) == 0:
+            result.append(interval)
+        else:
+            if result[-1][0] <= interval[0] <= result[-1][1]:
+                result[-1][1] = max(result[-1][1], interval[1])
+            else:
+                result.append(interval)
+    return result
+
+
+print(merge_intervals([[1, 4], [4, 5]]))

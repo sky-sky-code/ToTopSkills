@@ -89,6 +89,7 @@ def solution_v4(nums):
 Summary Ranges одно и тоже задание с Merge Intervals
 """
 
+
 def summary_ranges(nums):
     set_nums = set(nums)
     intervals = []
@@ -99,7 +100,7 @@ def summary_ranges(nums):
             interval = f"{num}->"
             while num + len in set_nums:
                 len += 1
-            if num + len -1 == num:
+            if num + len - 1 == num:
                 interval = f"{num}"
             else:
                 interval += f"{num + len - 1}"

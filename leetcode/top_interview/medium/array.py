@@ -233,4 +233,8 @@ def merge_intervals(intervals):
     return result
 
 
-print(merge_intervals([[1, 4], [4, 5]]))
+def insert_interval(intervals, new_interval):
+    result = []
+
+    for interval in intervals:
+        pass

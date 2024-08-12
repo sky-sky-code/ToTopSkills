@@ -147,7 +147,6 @@ class BingoCage:
 
 
 def teg(name, *content, class_=None, **attrs):
-
     if class_ is not None:
         attrs['class'] = class_
     attr_pairs = (f'{attr}="{value}"' for attr, value in sorted(attrs.items()))
@@ -158,4 +157,9 @@ def teg(name, *content, class_=None, **attrs):
         return '\n'.join(elements)
     else:
         return f'<{name}{attr_str} />'
+
+
+d1 = {1: '1', 2: 2}
+d2 = {3: '3', 5: '4'}
+
 

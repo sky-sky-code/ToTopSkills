@@ -45,7 +45,6 @@ def max_sides():
         print(max(b, d), a + c)
 
 
-
 def underg():
     int1 = int(input())
     int2 = int(input())
@@ -69,3 +68,16 @@ def underg():
     else:
         print(tmin, tmax)
 
+
+n = int(input())
+mid = n // 2 + 1
+for i in range(1, n + 1):
+    d = 0
+    if i <= mid:
+        d = i
+    else:
+        d = n - i + 1
+    for j in range(d):
+        print('*', end='')
+
+    print()

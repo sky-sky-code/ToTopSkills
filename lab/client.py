@@ -7,20 +7,15 @@ import ssl
 import websockets
 import uuid
 
-headers = {"Authorization": 'Token16 2PsvI_ANG6eqfA2u'}
+headers = {"Authorization": 'Token16 eGS3jldniAkTYS9l'}
 
 
 async def send_message():
     uri = f"ws://127.0.0.1:8000/ws/chat/{uuid.uuid4()}/message/send/"
     async with websockets.connect(uri=uri, extra_headers=headers, timeout=120, close_timeout=120) as websocket:
-        message = {
-            "text": "Hello World!",
-            "type": 'simple',
-        }
-        await websocket.send(json.dumps(message, ensure_ascii=False))
-        print(f">>> {message}")
         greeting = await websocket.recv()
         print(f"<<< {greeting}")
+
 
 async def chat_messages():
     uri = f"ws://127.0.0.1:8000/ws/chat/{uuid.uuid4()}messages/"

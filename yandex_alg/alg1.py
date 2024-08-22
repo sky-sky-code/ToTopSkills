@@ -68,7 +68,6 @@ def underg():
     else:
         print(tmin, tmax)
 
-
 def type_seq():
     n = int(input())
     CONSTANT = 0
@@ -257,5 +256,3 @@ def sapper():
 
     for i in maap:
         print(i)
-
-

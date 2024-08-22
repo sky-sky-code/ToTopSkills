@@ -231,10 +231,3 @@ def merge_intervals(intervals):
             else:
                 result.append(interval)
     return result
-
-
-def insert_interval(intervals, new_interval):
-    result = []
-
-    for interval in intervals:
-        pass

@@ -17,4 +17,25 @@ async def main():
     await asyncio.gather(*tasks)
 
 
-asyncio.run(main())
+async def one():
+    while True:
+        await asyncio.sleep(1)
+        try:
+            asyncio.CancelledError
+        except Exception as e:
+            break
+        print('hello')
+
+
+async def slow():
+    await asyncio.sleep(3)
+    return 45
+
+
+async def two():
+    task_1 = asyncio.create_task(one())
+    resul = await slow()
+    task_1.cancel()
+    print(resul)
+
+asyncio.run(two())

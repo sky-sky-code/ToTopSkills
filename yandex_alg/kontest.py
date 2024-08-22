@@ -66,4 +66,3 @@ def bracket(count, s='', left=0, right=0):
             bracket(count, s + '(', left + 1, right)
         if right < left:
             bracket(count, s + ')', left, right + 1)
-

@@ -235,6 +235,26 @@ def merge_intervals(intervals):
 
 def insert_interval(intervals, new_interval):
     result = []
+    for i, interval in enumerate(intervals):
+        if new_interval[0] > interval[1]:
+            result.append(interval)
+        elif interval[0] > new_interval[1]:
+            return result + [new_interval] + intervals[i:]
+        else:
+            new_interval = (min(new_interval[0], interval[0]), max(new_interval[1], interval[1]))
 
-    for interval in intervals:
-        pass
+    return result + [new_interval]
+
+
+def find_min_intervals(intervals):
+    """
+    [[1, 6], [2, 8], [7, 12], [10, 16]]
+   [[0, 6], [0, 9], [2, 8], [2, 9], [3, 8], [3, 9], [3, 9], [6, 8], [7, 12], [9, 10]]
+    """
+    intervals.sort(key=lambda x: x[1])
+    result = [intervals[0]]
+    for interval in intervals[1:]:
+        if result[-1][1] < interval[0]:
+            result.append(interval)
+
+    return len(result)

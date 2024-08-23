@@ -34,16 +34,45 @@ def remove_element(nums, val):
 
 def remove_duplicates(nums):
     current_nums = nums[0]
-    count_nums = 1
-
     index = 1
-    while index < len(nums) - 1:
-        if nums[index] != current_nums:
-            current_nums = nums[index]
-            count_nums = 1
-        elif count_nums > 2:
+    while index <= len(nums) - 1 and nums[index] != '_':
+        if nums[index] == current_nums:
             nums.pop(index)
         else:
-            count_nums += 1
+            current_nums = nums[index]
+            index += 1
+    return len(nums)
 
+
+def remove_duplicates_2(nums):
+    current_nums = nums[0]
+    count_num = 1
+
+    index = 1
+    while index <= len(nums) - 1:
+        if nums[index] == current_nums:
+            count_num += 1
+            if count_num > 2:
+                nums.pop(index)
+                count_num -= 1
+                continue
+        else:
+            current_nums = nums[index]
+            count_num = 1
+        index += 1
+    return len(nums)
+
+
+"""
+еще раз решить majority element, jump_game, Best Time to Buy and Sell Stock
+"""
+
+
+def jump_game_2(nums):
+    gas = nums[0]
+    count = 1
+
+    """
+    2 1 2 1 4
+    """
 

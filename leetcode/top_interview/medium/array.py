@@ -56,6 +56,32 @@ def two_sum(nums, target):
             left += 1
 
 
+def rotate_arr(nums, k):
+    for i in range(k):
+        rotate_num = nums.pop(-1)
+        nums.insert(0, rotate_num)
+    return nums
+
+
+def rotate_arr_v2(nums, k):
+    k = k % len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
+    return nums
+
+
+def rotate_arr_v3(nums, k):
+    k = k & len(nums)
+
+    def reverse(left, right):
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+
+    reverse(0, len(nums) - 1)
+    reverse(0, k - 1)
+    reverse(k, len(nums) - 1)
+
 def jump_game(arr):
     gas = 0
 

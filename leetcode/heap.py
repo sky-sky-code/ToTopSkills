@@ -44,6 +44,16 @@ def remove_duplicates(nums):
     return len(nums)
 
 
+def remove_duplicates_v2(nums):
+    i = 1
+    for j in range(1, len(nums)):
+        if nums[j] != nums[j - 1]:
+            nums[i] = nums[j]
+            i += 1
+
+    return i
+
+
 def remove_duplicates_2(nums):
     current_nums = nums[0]
     count_num = 1
@@ -68,11 +78,62 @@ def remove_duplicates_2(nums):
 """
 
 
-def jump_game_2(nums):
-    gas = nums[0]
+def majority_element(nums):
+    current_num = nums[0]
     count = 1
 
-    """
-    2 1 2 1 4
-    """
+    for num in nums:
+        if num == current_num:
+            count += 1
+        else:
+            if count < 0:
+                current_num = num
+                count = 1
+            count -= 1
+    return current_num
+
+
+def is_palindrome(s):
+    l = 0
+    r = len(s) - 1
+
+    while l < r:
+        if not s[l].isalnum():
+            l += 1
+        elif not s[r].isalnum():
+            r -= 1
+        elif s[l].lower() == s[r].lower():
+            l += 1
+            r -= 1
+        else:
+            return False
+    return True
+
+
+def is_palindrome_v2(s):
+    s = ''.join([word for word in s if word.isalnum()])
+    new_s = s[::-1]
+
+    if s.lower() == new_s.lower():
+        return True
+    else:
+        return False
+
+
+def is_subsequence(s, t):
+    point = 0
+    new_s = ''
+
+    for word in t:
+        if s[point] == word:
+            new_s += word
+            point += 1
+            if point >= len(s):
+                break
+    if s == new_s:
+        return True
+    else:
+        return False
+
+
 

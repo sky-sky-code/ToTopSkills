@@ -37,6 +37,9 @@ def three_sum(nums):
     return res
 
 
+print(three_sum([-1, 0, 1, 2, -1, -4]))
+
+
 def two_sum(nums, target):
     left = 0
     right = len(nums) - 1
@@ -81,6 +84,7 @@ def rotate_arr_v3(nums, k):
     reverse(0, len(nums) - 1)
     reverse(0, k - 1)
     reverse(k, len(nums) - 1)
+
 
 def jump_game(arr):
     gas = 0
@@ -284,3 +288,58 @@ def find_min_intervals(intervals):
             result.append(interval)
 
     return len(result)
+
+
+from math import ceil
+
+# def maxk_elements(nums, k):
+#     nums.sort()
+#     right = len(nums) - 1
+#     sum = 0
+#
+#     while k and 0 <= right:
+#         if nums[right - 1] > nums[right]:
+#             right -= 1
+#         else:
+#             sum += nums[right]
+#             nums[right] = ceil(nums[right] / k)
+#             k -= 1
+#
+#     return sum
+
+import heapq
+
+
+def maxk_elements(nums, k):
+    nums.sort()
+    result = 0
+
+    while k > 0:
+        k -= 1
+        nums.sort()
+        max_element = nums.pop(len(nums) - 1)
+        result += max_element
+        nums.append(ceil(max_element / 3))
+    return result
+
+
+def maxKelements(nums, k) -> int:
+    ans = 0
+    max_heap = []
+
+    # Add elements one by one into the max-heap
+    for num in nums:
+        heapq.heappush(max_heap, -num)
+
+    while k > 0:
+        k -= 1
+        # Retrieve the max element (invert the sign because it's stored as negative)
+        max_element = -heapq.heappop(max_heap)
+        ans += max_element
+        # Add one-third of the max element back to the heap. Rounded up using integer division.
+        heapq.heappush(max_heap, -ceil(max_element / 3))
+
+    return ans
+
+
+print(maxk_elements([756902131,995414896,95906472,149914376,387433380,848985151], 6 ))

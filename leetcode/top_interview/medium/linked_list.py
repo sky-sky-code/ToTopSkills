@@ -79,8 +79,6 @@ def intersection_two_linked_list(headA, headB):
         if nodeA != nodeB:
             return prev
         prev = nodeA
-
-
 """
 Полиндромный Linked List
 """
@@ -277,4 +275,3 @@ def add_two_numbers(list1, list2):
         dummy = dummy.next
 
     return res.next
-

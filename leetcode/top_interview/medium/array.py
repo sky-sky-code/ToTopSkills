@@ -1,6 +1,7 @@
 #################################################################
 import sys
 from collections import defaultdict
+from math import ceil
 from typing import List
 
 
@@ -37,6 +38,9 @@ def three_sum(nums):
                     j += 1
 
     return res
+
+
+print(three_sum([-1, 0, 1, 2, -1, -4]))
 
 
 def two_sum(nums, target):
@@ -290,7 +294,6 @@ def find_min_intervals(intervals):
 
     return len(result)
 
-
 def threeSumCloset(nums, target):
     nums = sorted(nums)
     min_result = float('inf')
@@ -396,11 +399,36 @@ def jump_2(nums):
             jump += 1
     return jump
 
-
-#TODO решите еще раз
-def permute(nums: List[int]) -> List[List[int]]:
-    pass
+import heapq
 
 
-def subsets(nums: List[int]) -> List[List[int]]:
-    pass
+def maxk_elements(nums, k):
+    nums.sort()
+    result = 0
+
+    while k > 0:
+        k -= 1
+        nums.sort()
+        max_element = nums.pop(len(nums) - 1)
+        result += max_element
+        nums.append(ceil(max_element / 3))
+    return result
+
+
+def maxKelements(nums, k) -> int:
+    ans = 0
+    max_heap = []
+
+    # Add elements one by one into the max-heap
+    for num in nums:
+        heapq.heappush(max_heap, -num)
+
+    while k > 0:
+        k -= 1
+        # Retrieve the max element (invert the sign because it's stored as negative)
+        max_element = -heapq.heappop(max_heap)
+        ans += max_element
+        # Add one-third of the max element back to the heap. Rounded up using integer division.
+        heapq.heappush(max_heap, -ceil(max_element / 3))
+
+    return ans

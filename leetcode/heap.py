@@ -46,6 +46,16 @@ def remove_duplicates(nums):
     return len(nums)
 
 
+def remove_duplicates_v2(nums):
+    i = 1
+    for j in range(1, len(nums)):
+        if nums[j] != nums[j - 1]:
+            nums[i] = nums[j]
+            i += 1
+
+    return i
+
+
 def remove_duplicates_2(nums):
     current_nums = nums[0]
     count_num = 1
@@ -94,11 +104,68 @@ def longest_common_prefix_v2(strs):
     ЗБС решение
     """
 
-    prefix = strs[0]
-    for i in range(1, len(strs)):
-        while not strs[i].startswith(prefix):
-            prefix = prefix[:-1]
-    return prefix
+
+"""
+еще раз решить majority element, jump_game, Best Time to Buy and Sell Stock
+"""
+
+
+def majority_element(nums):
+    current_num = nums[0]
+    count = 1
+
+    for num in nums:
+        if num == current_num:
+            count += 1
+        else:
+            if count < 0:
+                current_num = num
+                count = 1
+            count -= 1
+    return current_num
+
+
+def is_palindrome(s):
+    l = 0
+    r = len(s) - 1
+
+    while l < r:
+        if not s[l].isalnum():
+            l += 1
+        elif not s[r].isalnum():
+            r -= 1
+        elif s[l].lower() == s[r].lower():
+            l += 1
+            r -= 1
+        else:
+            return False
+    return True
+
+
+def is_palindrome_v2(s):
+    s = ''.join([word for word in s if word.isalnum()])
+    new_s = s[::-1]
+
+    if s.lower() == new_s.lower():
+        return True
+    else:
+        return False
+
+
+def is_subsequence(s, t):
+    point = 0
+    new_s = ''
+
+    for word in t:
+        if s[point] == word:
+            new_s += word
+            point += 1
+            if point >= len(s):
+                break
+    if s == new_s:
+        return True
+    else:
+        return False
 
 
 def hasystack_needle(haystack, needle):
@@ -354,6 +421,8 @@ def increasing_triplet_sybseq(nums: str) -> int:
         else:
             return True
     return False
+
+
 def rle_count(n):
     """
     Последовательность подсчитай и скажи — это последовательность цифровых строк, определяемая рекурсивной формулой:
@@ -364,6 +433,7 @@ def rle_count(n):
 
     Для заданного положительного целого числа n верните этот nth элемент подсчёта и вывода последовательности.
     """
+
     def generate_rle_s(s):
         current_s = s[0]
         count_current_s = 1
@@ -386,4 +456,3 @@ def rle_count(n):
     for i in range(n - 1):
         count_rle_s = generate_rle_s(count_rle_s)
     return count_rle_s
-

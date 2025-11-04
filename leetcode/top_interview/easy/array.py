@@ -166,6 +166,11 @@ def rotate_array_v1(arr):
     return arr[rotate:] + arr[:rotate]
 
 
+def test_rotate_array_v1(nums, k):
+    k = k * -1
+    return nums[k:] + nums[:k]
+
+
 def rotate_array_v2(arr):
     rotate = int(input())
 
@@ -173,9 +178,6 @@ def rotate_array_v2(arr):
         el = arr.pop(-1)
         arr.insert(0, el)
     print(arr)
-
-
-# Contains Duplicate
 
 def contains_element(nums: list):
     for i in nums:

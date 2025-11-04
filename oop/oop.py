@@ -106,6 +106,3 @@ class Book:
             return object.__setattr__(self, key, value)
         else:
             raise "Неверный тип присваиваемых данных."
-
-
-book = Book("Python ООП", "Сергей Балакирев", 123, 202)

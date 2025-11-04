@@ -93,7 +93,7 @@ def brackets_check(seq):
         else:
             if seq[i] == stack.pop():
                 return False
-    return True
+    return True if len(stack) == 0 else False
 
 
 def len_last_word(s):
@@ -121,4 +121,3 @@ def reverse_words(s):
         index -= 1
 
     return result + s
-

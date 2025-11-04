@@ -46,4 +46,28 @@ def duplicate_zeroes(arr):
     return arr
 
 
-print(duplicate_zeroes([1, 2, 3]))
+def removeDuplicates(nums):
+    if not nums:
+        return 0
+
+    # Two-pointer approach
+    k = 1  # Position for next unique element
+
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i - 1]:
+            nums[k] = nums[i]
+            k += 1
+
+    return k
+
+
+def maxProfit(prices) -> int:
+    current_max_profit = 0
+    index_current_price = 0
+
+    for i in range(1, len(prices)):
+        next_price = prices[i]
+        if prices[index_current_price] < next_price:
+            current_max_profit = current_max_profit + (next_price - prices[index_current_price])
+        index_current_price = i
+    return current_max_profit

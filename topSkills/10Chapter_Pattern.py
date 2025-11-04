@@ -62,7 +62,7 @@ class Promotion(ABC):  # Стратегия: абстрактный базовы
         """Вернуть скидку в виде положительной суммы в долларах"""
 
 
-class FidelityPromo(Promotion):  # первая конкретная стратегия
+class FidelityPromo(Promotion):  # первая wконкретная стратегия
     """5%-ная скидка для заказчиков, имеющих не менее 1000 баллов лояльности"""
 
     def discount(self, order: Order) -> Decimal:

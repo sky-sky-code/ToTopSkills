@@ -1,5 +1,7 @@
 #################################################################
+import sys
 from collections import defaultdict
+from typing import List
 
 
 def mul(arr):
@@ -81,6 +83,7 @@ def rotate_arr_v3(nums, k):
     reverse(0, len(nums) - 1)
     reverse(0, k - 1)
     reverse(k, len(nums) - 1)
+
 
 def jump_game(arr):
     gas = 0
@@ -179,9 +182,9 @@ def longest_palindromic_substrings(s):
                 right += 1
             if len(longest) < right - left - 1:
                 longest = s[left + 1:right]
-
-    print(longest)
     return longest
+
+print(longest_palindromic_substrings('babad'))
 
 
 def max_area(nums):
@@ -237,6 +240,8 @@ def longest_substring_without_repeat(s):
 
     return maxLength
 
+longest_substring_without_repeat('abcabcbb')
+
 
 """
 Учитывая массив intervals где intervals[i] = [starti, endi], объедините все перекрывающиеся интервалы
@@ -284,3 +289,118 @@ def find_min_intervals(intervals):
             result.append(interval)
 
     return len(result)
+
+
+def threeSumCloset(nums, target):
+    nums = sorted(nums)
+    min_result = float('inf')
+    max_result = float('-inf')
+
+    for i in range(len(nums)):
+        j = i + 1
+        k = len(nums) - 1
+
+        while j < k:
+            total = nums[i] + nums[j] + nums[k]
+
+            if total < target:
+                min_result = min(min_result, total)
+                j += 1
+            elif total > target:
+                max_result = max(max_result, total)
+                k -= 1
+            else:
+                return total
+    return
+
+
+def search(nums: List[int], target: int) -> bool:
+    left = 0
+    right = len(nums) - 1
+    while left < right:
+        mid = (left + right) // 2
+
+        if target == nums[mid]:
+            return target
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target <= nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else:
+            if nums[mid] <= target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return -1
+
+
+def search_range(n: List[int], t: int) -> int:
+    left = 0
+    right = len(n) - 1
+
+    start, end = -1, -1
+    while left <= right:
+        mid = (left + right) // 2
+
+        if n[mid] == t:
+            start = mid
+            end = mid
+            while start > 0 and n[start - 1] == t:
+                start = start - 1
+            while end < len(n) - 1 and n[end + 1] == t:
+                end = end + 1
+            break
+        elif n[mid] > t:
+            right = mid - 1
+        elif n[mid] < t:
+            left = mid + 1
+
+    return [start, end]
+
+
+def find_max_product(A):
+    max1 = A[0]
+    max2 = -sys.maxsize
+
+    min1 = A[0]
+    min2 = sys.maxsize
+
+    for i in range(1, len(A)):
+        if A[i] > max1:
+            max2 = max1
+            max1 = A[i]
+        elif A[i] > max2:
+            max2 = A[i]
+
+        if A[i] < min1:
+            min2 = min1
+            min1 = A[i]
+        elif A[i] < min2:
+            min2 = A[i]
+
+
+#TODO решить еще раз
+def combinationSum(candidates: List[int], target: int) -> List[List[int]]:
+    pass
+
+
+def jump_2(nums):
+    last = farthest = jump = 0
+
+    for i in range(len(nums) - 1):
+        farthest = max(farthest, i + nums[i])
+
+        if i == last:
+            last = farthest
+            jump += 1
+    return jump
+
+
+#TODO решите еще раз
+def permute(nums: List[int]) -> List[List[int]]:
+    pass
+
+
+def subsets(nums: List[int]) -> List[List[int]]:
+    pass

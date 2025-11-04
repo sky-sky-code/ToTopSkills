@@ -23,7 +23,6 @@ def first_bad_version(n, bad):
     return mid
 
 
-# Merge Sorted Array
 def merge_sorted_array(nums1, m, nums2, n):
     last = m + n - 1
 
